@@ -15,7 +15,6 @@ ground truth.
 
 Diffusers official:
 
-- `fast_hunyuan_video`
 - `flux_2_image_t2i`
 - `flux_2_klein_image_t2i`
 - `flux_2_ti2i`
@@ -30,7 +29,6 @@ Diffusers official:
 Official repo:
 
 - `wan2_1_t2v_1.3b`: Wan2.1 official repo, MP4 encode plus CI key-frame extraction.
-- `wan2_2_ti2v_5b`: Wan2.2 official repo TI2V path. Diffusers output is not used because it failed to inject the image.
 - `ltx_2.3_one_stage_ti2v`: LTX-Video official repo script with `torch.inference_mode()`.
 - `ltx_2.3_two_stage_t2v_2gpus`: LTX-Video official repo script with `torch.inference_mode()`.
 
@@ -42,4 +40,6 @@ HF tokens are not stored in this bundle.
 
 Removed from official GT after review:
 
+- `fast_hunyuan_video`: CI uses the FastVideo path, so Diffusers output is not a comparable official reference.
+- `wan2_2_ti2v_5b`: Diffusers did not inject image input, and the attempted official-repo output is not retained as comparable GT.
 - `zimage_image_t2i_fp8`: CI uses `--transformer-path MickJ/Z-Image-Turbo-fp8`; current official script generated base-model ZImage output instead.

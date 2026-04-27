@@ -7,7 +7,7 @@ environment before running gated model cases.
 ## Files
 
 - `gen_official_diffusion_gt.py`: SGLang helper for official Diffusers and Wan2.1 official-repo generation.
-- `gen_official_wan22_ti2v.py`: Wan2.2 official repo TI2V generator; avoids Diffusers because it drops image input.
+- `gen_official_wan22_ti2v.py`: Wan2.2 official repo TI2V investigation helper; not mapped to the current comparable GT set.
 - `gen_official_ltx23.py`: LTX official repo generator for the covered LTX-2.3 CI cases; verified on H200 with fp8-cast and inference_mode.
 - `run_official_*.sh`: command wrappers for each official source group.
 - `official_repro_case_map.json`: machine-readable case_id -> script mapping.
@@ -16,7 +16,7 @@ environment before running gated model cases.
 
 | case_id | status | script | wrapper | notes |
 |---|---|---|---|---|
-| `fast_hunyuan_video` | `official_comparable` | `gen_official_diffusion_gt.py` | `run_official_diffusers_cases.sh` | - |
+| `fast_hunyuan_video` | `official_not_comparable` | `-` | `-` | CI uses the FastVideo path, so Diffusers output is not a comparable official reference. |
 | `flux_2_image_t2i` | `official_comparable` | `gen_official_diffusion_gt.py` | `run_official_diffusers_cases.sh` | Official reference refreshed with current official Diffusers script. |
 | `flux_2_image_t2i_upscaling_4x` | `native_only_excluded` | `-` | `-` | postprocess upscaling has no upstream official implementation |
 | `flux_2_klein_image_t2i` | `official_comparable` | `gen_official_diffusion_gt.py` | `run_official_diffusers_cases.sh` | - |
@@ -40,6 +40,6 @@ environment before running gated model cases.
 | `wan2_1_t2v_1.3b_text_encoder_cpu_offload` | `native_only_excluded` | `-` | `-` | offload behavior has no upstream official implementation |
 | `wan2_1_t2v_1.3b_upscaling_4x` | `native_only_excluded` | `-` | `-` | postprocess upscaling has no upstream official implementation |
 | `wan2_1_t2v_1_3b_lora_1gpu` | `native_only_excluded` | `-` | `-` | CI case is dynamic_lora_path/set_lora; current artifact used Diffusers load_lora_weights, not official Wan repo or dynamic-load semantics |
-| `wan2_2_ti2v_5b` | `official_comparable` | `gen_official_wan22_ti2v.py` | `run_official_wan22_ti2v.sh` | Official reference overlaid from Wan2.2 official repo; previous Diffusers path did not inject image. |
+| `wan2_2_ti2v_5b` | `official_not_comparable` | `-` | `-` | Diffusers does not inject TI2V image input; attempted official-repo output is not retained as comparable GT. |
 | `zimage_image_t2i` | `official_comparable` | `gen_official_diffusion_gt.py` | `run_official_diffusers_cases.sh` | - |
 | `zimage_image_t2i_fp8` | `native_only_excluded` | `-` | `-` | CI uses --transformer-path MickJ/Z-Image-Turbo-fp8; current official script only reproduces base ZImage |

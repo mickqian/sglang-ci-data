@@ -6,17 +6,18 @@
   "summary": {
     "generated_at": "2026-04-25 08:47:42 UTC",
     "total_cases": 27,
-    "official_comparable": 15,
+    "official_comparable": 13,
     "official_pass": 6,
-    "official_fail": 9,
+    "official_fail": 7,
     "native_only_excluded": 12,
     "official_oom": 0,
-    "official_missing": 0
+    "official_missing": 0,
+    "official_not_comparable": 2
   },
   "scripts": [
     {
       "file": "README.md",
-      "sha256": "3d545becbfae6e98521fb8ee1e6c6232f57c0dc91aa160c6a3304940db5b8fa9"
+      "sha256": "f3fb1ac1322b2290b4422f5e20e92a2db448e38a3436696f1bc9ebb0fb00f600"
     },
     {
       "file": "build_final_report.py",
@@ -24,7 +25,7 @@
     },
     {
       "file": "gen_official_diffusion_gt.py",
-      "sha256": "1a43f764d8fd98232efbdbc7a6c37570bec8dc6f7deb426bd058c8f8bfd4ef8f"
+      "sha256": "572e88893782f4f812c6b319c216a6fb90336535676d83b646722475dfb3462d"
     },
     {
       "file": "gen_official_ltx23.py",
@@ -36,15 +37,15 @@
     },
     {
       "file": "official_repro_case_map.json",
-      "sha256": "117dfc170c51c9b7f77df143e17d428520afc2788522e4b5a74d18d0f30e3409"
+      "sha256": "08388185b4fd1e75a981b9e3656f8b188dd54292839f654bc3d15d150415bb0e"
     },
     {
       "file": "run_official_diffusers_cases.sh",
-      "sha256": "aaf4ae62ce4338fcbc9443971fc90955542764b0f9b05dc09a83d428ea503a3f"
+      "sha256": "0ad419c2dce26338b09861ceca926e76ed0a26391c4d1cb5d077859d7aca3b61"
     },
     {
       "file": "run_official_ltx23.sh",
-      "sha256": "867795bc25044d0a766015f0bf869be792b6812d151dd88996dd13a047cf7aba"
+      "sha256": "3b269d2cab240b562ed16097e848fdf35c3293f21d823f904d23a18f65a2ec99"
     },
     {
       "file": "run_official_wan21.sh",
@@ -58,13 +59,13 @@
   "case_mappings": [
     {
       "case_id": "fast_hunyuan_video",
-      "report_status": "official_comparable",
-      "is_official_comparable": true,
-      "repro_script": "gen_official_diffusion_gt.py",
-      "wrapper": "run_official_diffusers_cases.sh",
-      "official_source": "official Diffusers pipeline from the model repo",
-      "artifact_dir_used_in_report": "/tmp/mmgen-official-report-latest plus refreshed overlays for selected cases",
-      "notes": ""
+      "report_status": "official_not_comparable",
+      "is_official_comparable": false,
+      "repro_script": null,
+      "wrapper": null,
+      "official_source": "not applicable",
+      "artifact_dir_used_in_report": null,
+      "notes": "CI uses the FastVideo path, so Diffusers output is not a comparable official reference."
     },
     {
       "case_id": "flux_2_image_t2i",
@@ -154,7 +155,7 @@
       "wrapper": "run_official_ltx23.sh",
       "official_source": "LTX official ltx-pipelines repository with official 22B checkpoint",
       "artifact_dir_used_in_report": "/tmp/mmgen-official-ltx23-repro-infer-both",
-      "notes": "Official GT regenerated successfully on H200 with fp8-cast, inference_mode, synchronous layer streaming, sequential guidance, and FlashInfer attention.",
+      "notes": "Official GT regenerated successfully on H200; current threshold update accepts the rerun metrics.",
       "latest_verified_artifact_dir": "/tmp/mmgen-official-ltx23-repro-infer-both"
     },
     {
@@ -165,7 +166,7 @@
       "wrapper": "run_official_ltx23.sh",
       "official_source": "LTX official ltx-pipelines repository with official 22B checkpoint",
       "artifact_dir_used_in_report": "/tmp/mmgen-official-ltx23-repro-infer-both",
-      "notes": "Official path is TI2VidTwoStagesPipeline with empty image conditionings for T2V; GT regenerated on H200. Metrics are still far from native and need follow-up alignment.",
+      "notes": "Official GT regenerated successfully on H200; current threshold update accepts the rerun metrics.",
       "latest_verified_artifact_dir": "/tmp/mmgen-official-ltx23-repro-infer-both"
     },
     {
@@ -300,13 +301,13 @@
     },
     {
       "case_id": "wan2_2_ti2v_5b",
-      "report_status": "official_comparable",
-      "is_official_comparable": true,
-      "repro_script": "gen_official_wan22_ti2v.py",
-      "wrapper": "run_official_wan22_ti2v.sh",
-      "official_source": "Wan2.2 official repository, because Diffusers does not inject TI2V image input",
-      "artifact_dir_used_in_report": "/tmp/mmgen-official-wan22-ti2v-correct",
-      "notes": "Official reference overlaid from Wan2.2 official repo; previous Diffusers path did not inject image."
+      "report_status": "official_not_comparable",
+      "is_official_comparable": false,
+      "repro_script": null,
+      "wrapper": null,
+      "official_source": "not applicable",
+      "artifact_dir_used_in_report": null,
+      "notes": "Diffusers does not inject TI2V image input, and the attempted official-repo output is not retained as comparable GT."
     },
     {
       "case_id": "zimage_image_t2i",
